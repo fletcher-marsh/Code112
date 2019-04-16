@@ -10,14 +10,21 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.createREPL"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.createREPL",
+                "title": "Create REPL"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.createREPL",
+                "key": "ctrl+b",
+                "mac": "cmd+b"
             }
         ]
     },
