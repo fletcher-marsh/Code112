@@ -4,14 +4,15 @@ import * as vscode from 'vscode';
 // Get current Python REPL (if exists)
 function getInteractivePythonTerminal(): vscode.Terminal | null {
     const allTerms = vscode.window.terminals;
+    var resultTerm = null;
 
     allTerms.forEach(term => {
-        if (term.name === `Python`) {
-            return term;
+        if (term.name === 'Python') {
+            resultTerm = term;
         }
     });
 
-    return null;
+    return resultTerm;
 }
 
 // Dispose existing Python REPL terminal (if exists)
@@ -28,9 +29,9 @@ function getPythonPath(): String {
     return "python3";
 }
 
+// Create an interactive python environment with the current file
 export function activate(context: vscode.ExtensionContext) {
-    // Create an interactive python environment with the current file
-    let disposable = vscode.commands.registerCommand('extension.createREPL', () => {
+    let pythonREPL = vscode.commands.registerCommand('extension.createREPL', () => {
         // If a terminal exists, clean it up
         disposePythonTerminal()
 
@@ -47,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(pythonREPL);
 }
 
 export function deactivate() {

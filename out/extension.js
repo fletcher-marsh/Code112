@@ -4,12 +4,13 @@ const vscode = require("vscode");
 // Get current Python REPL (if exists)
 function getInteractivePythonTerminal() {
     const allTerms = vscode.window.terminals;
+    var resultTerm = null;
     allTerms.forEach(term => {
-        if (term.name === `Python`) {
-            return term;
+        if (term.name === 'Python') {
+            resultTerm = term;
         }
     });
-    return null;
+    return resultTerm;
 }
 // Dispose existing Python REPL terminal (if exists)
 function disposePythonTerminal() {
@@ -23,9 +24,9 @@ function getPythonPath() {
     // TODO: Windows has a lot of wonky python stuff, deal with it
     return "python3";
 }
+// Create an interactive python environment with the current file
 function activate(context) {
-    // Create an interactive python environment with the current file
-    let disposable = vscode.commands.registerCommand('extension.createREPL', () => {
+    let pythonREPL = vscode.commands.registerCommand('extension.createREPL', () => {
         // If a terminal exists, clean it up
         disposePythonTerminal();
         // Setup a new terminal with an interactive python environment
@@ -40,7 +41,7 @@ function activate(context) {
             vscode.window.showInformationMessage('No files to run!');
         }
     });
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(pythonREPL);
 }
 exports.activate = activate;
 function deactivate() {
