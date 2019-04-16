@@ -3,6 +3,7 @@
     "displayName": "Code112",
     "description": "VSCode extension for Python development - made for 15-112 at Carnegie Mellon University",
     "version": "0.0.1",
+    "publisher": "Fletcher Marsh",
     "engines": {
         "vscode": "^1.33.0"
     },
