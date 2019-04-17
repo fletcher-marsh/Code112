@@ -2,11 +2,11 @@
     "name": "code112",
     "displayName": "Code112",
     "description": "VSCode extension for Python development - made for 15-112 at Carnegie Mellon University",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "FletcherMarsh",
     "repository": "https://github.com/fletcher-marsh/Code112",
     "engines": {
-        "vscode": "^1.33.0"
+        "vscode": "^0.10.5"
     },
     "categories": [
         "Other"
