@@ -25,13 +25,14 @@ function disposePythonTerminal() {
 
 // Finding proper Python path based on OS
 function getPythonPath(): String {
-    // TODO: Windows has a lot of wonky python stuff, deal with it
+    // TODO: this will be replaced by chooseExecutable, but needs starter default val
     return "python3";
 }
 
-// Create an interactive python environment with the current file
+// Set up functionality of Code112
 export function activate(context: vscode.ExtensionContext) {
-    let pythonREPL = vscode.commands.registerCommand('extension.createREPL', () => {
+    // Create an interactive python environment with the current file
+    let createREPL = vscode.commands.registerCommand('extension.createREPL', () => {
         // If a terminal exists, clean it up
         disposePythonTerminal()
 
@@ -48,7 +49,16 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(pythonREPL);
+    // Allow user to select which interpreter/compiler to run against
+    let chooseExecutable = vscode.commands.registerCommand('extension.chooseExecutable', () => {
+        // TODO: find all interpreters/etc. accessible
+        console.log("Choose executable");
+
+        // TODO: update stored value to be read from createREPL
+    });
+
+    context.subscriptions.push(createREPL);
+    context.subscriptions.push(chooseExecutable);
 }
 
 export function deactivate() {
