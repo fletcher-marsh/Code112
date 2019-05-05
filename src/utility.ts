@@ -29,7 +29,12 @@ export function findAllExecs(): string[] {
 
     if (platform === "darwin") {
         placesToLook = [
+            '/Library/Frameworks/Python.framework/Versions/3.4/bin/python',
+            '/Library/Frameworks/Python.framework/Versions/3.5/bin/python',
             '/Library/Frameworks/Python.framework/Versions/3.6/bin/python',
+            '/Library/Frameworks/Python.framework/Versions/3.4/bin/python3',
+            '/Library/Frameworks/Python.framework/Versions/3.5/bin/python3',
+            '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3',
             '/usr/local/bin/python',
             '/usr/bin/python',
             '~/anaconda3/python'

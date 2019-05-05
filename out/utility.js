@@ -28,6 +28,8 @@ function findAllExecs() {
     var placesToLook;
     if (platform === "darwin") {
         placesToLook = [
+            '/Library/Frameworks/Python.framework/Versions/3.4/bin/python',
+            '/Library/Frameworks/Python.framework/Versions/3.5/bin/python',
             '/Library/Frameworks/Python.framework/Versions/3.6/bin/python',
             '/usr/local/bin/python',
             '/usr/bin/python',
