@@ -63,5 +63,10 @@
         "tslint": "^5.8.0",
         "@types/node": "^8.10.25",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "@types/command-exists": "^1.2.0",
+        "executable": "^4.1.1",
+        "isexe": "^2.0.0"
     }
 }
