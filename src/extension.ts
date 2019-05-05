@@ -11,7 +11,7 @@ function getInteractivePythonTerminal(): vscode.Terminal | null {
     var resultTerm = null;
 
     allTerms.forEach(term => {
-        if (term.name === 'Python') {
+        if (term.name === 'Interactive') {
             resultTerm = term;
         }
     });
