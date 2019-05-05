@@ -65,8 +65,6 @@
         "@types/mocha": "^2.2.42"
     },
     "dependencies": {
-        "@types/command-exists": "^1.2.0",
-        "executable": "^4.1.1",
-        "isexe": "^2.0.0"
+        "@types/command-exists": "^1.2.0"
     }
 }
