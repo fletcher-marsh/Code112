@@ -42,11 +42,19 @@ function findAllExecs() {
     else if (platform === "win32") {
         placesToLook = [
             'C:\\ProgramData\\Anaconda3\\python.exe',
+            'C:\\Python27\\python.exe',
+            'C:\\Python27-32\\python.exe',
+            'C:\\Python35\\python.exe',
             'C:\\Python35-32\\python.exe',
+            'C:\\Python36\\python.exe',
             'C:\\Python36-32\\python.exe',
+            'C:\\Python37\\python.exe',
             'C:\\Python37-32\\python.exe',
             'C:\\Miniconda3\\python.exe',
-            '~\\Miniconda3\\python.exe'
+            '%HOMEPATH%\\Miniconda3\\python.exe',
+            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python35\\python.exe',
+            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python36\\python.exe',
+            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python37\\python.exe',
         ];
     }
     else {
