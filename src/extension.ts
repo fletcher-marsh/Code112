@@ -42,19 +42,28 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Send interactive environment setup to terminal
         if (filePath) {
-            //TODO: This is python specific, look into other execs
-            newTerm.sendText(`${path} -i ${filePath}`);
-            newTerm.show(true);
+            // Save file before execution
+            vscode.window.activeTextEditor!.document.save().then(success => {
+                // TODO: This is python specific, look into other execs
+                newTerm.sendText(`${path} -i ${filePath}`);
+                newTerm.show(true);
+            }, fail => {
+                util.toast('File save failed, execution aborted.');
+            });
         } else {
-            vscode.window.showInformationMessage('No files to run!');
+            util.toast('No files to run!');
         }
     });
 
     // Allow user to select which interpreter/compiler to run against
     let chooseExecutable = vscode.commands.registerCommand('extension.chooseExecutable', () => {
         const execs = util.findAllExecs();
-        var res = vscode.window.showQuickPick(execs, { placeHolder: 'Select executable' });
-        res.then(e => EXEC = e, fail => util.toast(fail));
+        // Show dropdown with found executables
+        vscode.window.showQuickPick(execs, { placeHolder: 'Select executable' }).then(choice => {
+            EXEC = choice;
+        }, fail => {
+            util.toast(fail);
+        });
     });
 
     context.subscriptions.push(createREPL);
