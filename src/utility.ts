@@ -37,7 +37,7 @@ export function findAllExecs(): string[] {
             '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3',
             '/usr/local/bin/python',
             '/usr/bin/python',
-            '~/anaconda3/python'
+            os.homedir()+'/anaconda3/python'
         ];
     } else if (platform === "win32") {
         placesToLook = [
@@ -51,10 +51,10 @@ export function findAllExecs(): string[] {
             'C:\\Python37\\python.exe',
             'C:\\Python37-32\\python.exe',
             'C:\\Miniconda3\\python.exe',
-            '%HOMEPATH%\\Miniconda3\\python.exe',
-            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python35\\python.exe',
-            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python36\\python.exe',
-            '%HOMEPATH%\\AppData\\Local\\Programs\\Python\\Python37\\python.exe',
+            os.homedir()+'\\Miniconda3\\python.exe',
+            os.homedir()+'\\AppData\\Local\\Programs\\Python\\Python35\\python.exe',
+            os.homedir()+'\\AppData\\Local\\Programs\\Python\\Python36\\python.exe',
+            os.homedir()+'\\AppData\\Local\\Programs\\Python\\Python37\\python.exe',
         ];
         toast(placesToLook.toString());
     } else {
