@@ -39,7 +39,7 @@ function findAllExecs() {
             '~/anaconda3/python'
         ];
     }
-    else if (platform === "cygwin") {
+    else if (platform === "win32") {
         placesToLook = [
             'C:\\ProgramData\\Anaconda3\\python.exe',
             'C:\\Python35-32\\python.exe',
