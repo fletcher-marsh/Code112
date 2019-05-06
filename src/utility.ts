@@ -56,7 +56,6 @@ export function findAllExecs(): string[] {
             os.homedir()+'\\AppData\\Local\\Programs\\Python\\Python36\\python.exe',
             os.homedir()+'\\AppData\\Local\\Programs\\Python\\Python37\\python.exe',
         ];
-        toast(placesToLook.toString());
     } else {
         placesToLook = [''];
     }
