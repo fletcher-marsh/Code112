@@ -41,12 +41,12 @@ export function findAllExecs(): string[] {
         ];
     } else if (platform === "cygwin") {
         placesToLook = [
-            'C:/ProgramData/Anaconda3/python.exe',
-            'C:/Python35-32/python.exe',
-            'C:/Python36-32/python.exe',
-            'C:/Python37-32/python.exe',
-            'C:/Miniconda3/python.exe',
-            '~/Miniconda3/python.exe'
+            'C:\\ProgramData\\Anaconda3\\python.exe',
+            'C:\\Python35-32\\python.exe',
+            'C:\\Python36-32\\python.exe',
+            'C:\\Python37-32\\python.exe',
+            'C:\\Miniconda3\\python.exe',
+            '~\\Miniconda3\\python.exe'
         ];
     } else {
         placesToLook = [''];
