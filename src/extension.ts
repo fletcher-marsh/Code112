@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
             // Save file before execution
             vscode.window.activeTextEditor!.document.save().then(success => {
                 // TODO: This is python specific, look into other execs
-                newTerm.sendText(`${path} -i ${filePath}`);
+                newTerm.sendText(`${util.sanitizePath(path)} -i ${util.sanitizePath(filePath)}`);
                 newTerm.show(true);
             }, fail => {
                 util.toast('File save failed, execution aborted.');

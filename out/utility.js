@@ -14,6 +14,7 @@ function getExecsByPaths(paths) {
     var path;
     for (var i = 0; i < paths.length; i++) {
         path = paths[i];
+        toast(path + fs.existsSync(path).toString());
         if (fs.existsSync(path)) {
             result.push(path);
         }
@@ -53,16 +54,23 @@ function findAllExecs() {
             'C:\\Miniconda3\\python.exe',
             os.homedir() + '\\Miniconda3\\python.exe',
             os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python35\\python.exe',
+            os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python35-32\\python.exe',
             os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python36\\python.exe',
+            os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe',
             os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python37\\python.exe',
+            os.homedir() + '\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe',
         ];
     }
     else {
+        // TODO: Linux support
         placesToLook = [''];
     }
     return getExecsByPaths(placesToLook);
 }
 exports.findAllExecs = findAllExecs;
+function sanitizePath(path) {
+}
+exports.sanitizePath = sanitizePath;
 // Alert user with that little thing that pops up on the bottom left
 function toast(msg) {
     vscode.window.showInformationMessage(msg);
