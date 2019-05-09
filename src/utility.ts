@@ -68,6 +68,11 @@ export function findAllExecs(): string[] {
     return getExecsByPaths(placesToLook);
 }
 
+// Replace all instances of a string (search) in a string (source) with a string (replacement) 
+export function replaceAll(source: string, search: string, replacement: string) {
+    return source.replace(new RegExp(search, 'g'), replacement);
+}
+
 // Perform manual sanitization of path (i.e. escape spaces)
 export function sanitizePath(path: string) {
     var clean: string;
@@ -75,14 +80,14 @@ export function sanitizePath(path: string) {
     // Handle spaces
     if (path.indexOf(" ") > -1) {
         if (PLATFORM === "darwin" || PLATFORM === "linux") {
-            clean = path.replace(" ", "\\ ");
+            clean = replaceAll(path, " ", "\\ ");
         } else {
             clean = '"' + path + '"';
         }
     } else {
         clean = path;
     }
-    toast(clean);
+    
     return clean;
 }
 

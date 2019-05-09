@@ -67,13 +67,18 @@ function findAllExecs() {
     return getExecsByPaths(placesToLook);
 }
 exports.findAllExecs = findAllExecs;
+// Replace all instances of a string (search) in a string (source) with a string (replacement) 
+function replaceAll(source, search, replacement) {
+    return source.replace(new RegExp(search, 'g'), replacement);
+}
+exports.replaceAll = replaceAll;
 // Perform manual sanitization of path (i.e. escape spaces)
 function sanitizePath(path) {
     var clean;
     // Handle spaces
     if (path.indexOf(" ") > -1) {
         if (PLATFORM === "darwin" || PLATFORM === "linux") {
-            clean = path.replace(" ", "\\ ");
+            clean = replaceAll(path, " ", "\\ ");
         }
         else {
             clean = '"' + path + '"';
@@ -82,7 +87,6 @@ function sanitizePath(path) {
     else {
         clean = path;
     }
-    toast(clean);
     return clean;
 }
 exports.sanitizePath = sanitizePath;
