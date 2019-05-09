@@ -1,6 +1,8 @@
 import * as fs from 'fs';
 import * as os from 'os';
+const PLATFORM = os.platform();
 import * as vscode from 'vscode';
+
 
 // Return default path for executable
 export function getDefaultPath(): string {
@@ -14,7 +16,6 @@ export function getExecsByPaths(paths: string[]): string[] {
 
     for (var i = 0; i < paths.length; i++) {
         path = paths[i];
-        toast(path + fs.existsSync(path).toString());
         if (fs.existsSync(path)) {
             result.push(path);
         }
@@ -25,10 +26,9 @@ export function getExecsByPaths(paths: string[]): string[] {
 
 // Retrieves all Python executables
 export function findAllExecs(): string[] {
-    const platform = os.platform();
     var placesToLook;
 
-    if (platform === "darwin") {
+    if (PLATFORM === "darwin") {
         placesToLook = [
             '/Library/Frameworks/Python.framework/Versions/3.4/bin/python',
             '/Library/Frameworks/Python.framework/Versions/3.5/bin/python',
@@ -40,7 +40,7 @@ export function findAllExecs(): string[] {
             '/usr/bin/python',
             os.homedir()+'/anaconda3/python'
         ];
-    } else if (platform === "win32") {
+    } else if (PLATFORM === "win32") {
         placesToLook = [
             'C:\\ProgramData\\Anaconda3\\python.exe',
             'C:\\Python27\\python.exe',
@@ -68,8 +68,22 @@ export function findAllExecs(): string[] {
     return getExecsByPaths(placesToLook);
 }
 
+// Perform manual sanitization of path (i.e. escape spaces)
 export function sanitizePath(path: string) {
-
+    var clean: string;
+    
+    // Handle spaces
+    if (path.indexOf(" ") > -1) {
+        if (PLATFORM === "darwin" || PLATFORM === "linux") {
+            clean = path.replace(" ", "\\ ");
+        } else {
+            clean = '"' + path + '"';
+        }
+    } else {
+        clean = path;
+    }
+    toast(clean);
+    return clean;
 }
 
 
