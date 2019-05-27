@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
 const util = require("./utility");
+const p = require("path");
 var EXEC; // Stores executable chosen by user
 // Get current Python REPL (if exists)
 function getInteractivePythonTerminal() {
@@ -28,8 +29,10 @@ function activate(context) {
         // If a terminal exists, clean it up
         disposeInteractiveTerminal();
         // Setup a new terminal with an interactive environment
-        const newTerm = vscode.window.createTerminal('Interactive');
         const filePath = vscode.window.activeTextEditor.document.fileName;
+        const dirPath = p.dirname(filePath);
+        const newTerm = vscode.window.createTerminal('Interactive');
+        newTerm.sendText(`cd ${dirPath}`);
         const path = EXEC ? EXEC : util.getDefaultPath();
         // Send interactive environment setup to terminal
         if (filePath) {

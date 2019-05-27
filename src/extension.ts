@@ -1,6 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as util from './utility';
+import * as p from 'path';
 
 var EXEC: string | undefined; // Stores executable chosen by user
 
@@ -36,8 +37,10 @@ export function activate(context: vscode.ExtensionContext) {
         disposeInteractiveTerminal()
 
         // Setup a new terminal with an interactive environment
-        const newTerm = vscode.window.createTerminal('Interactive');
         const filePath = vscode.window.activeTextEditor!.document.fileName;
+        const dirPath = p.dirname(filePath);
+        const newTerm = vscode.window.createTerminal('Interactive');
+        newTerm.sendText(`cd ${dirPath}`);
         const path = EXEC ? EXEC : util.getDefaultPath();
 
         // Send interactive environment setup to terminal
